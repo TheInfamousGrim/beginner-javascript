@@ -1,15 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Variables!</title>
+    <link rel="stylesheet" href="../base.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Variables!</title>
-  <link rel="stylesheet" href="../base.css">
-</head>
+  <body>
+    <script>
+      // makes you define the variable type
+      // this is enforced by default with most javascript modules
+      "use strict";
+      // var first = "wes"; // variable declaration statement
+      // let age = 300;
+      // const cool = true;
+      // console.log(first); // function call statement
 
-<body>
+      // // var and let can be updated
+      // first = "westerhoff";
+      // age = 400;
 
-</body>
+      // You can not set a const variable to be another primitive data value
+      let dog = "hugo";
+      dog = "snickers";
 
+      // if (age > 10) {
+      //   console.log("You are old");
+      // } // this is a code block
+      // Code blocks are bound by curly braces
+      // function definitions, if statements and loops don't need semi-colons
+
+      //Scoping
+      // function scoped variables
+      var first = "wes";
+      // block scope {} variables
+      let age = "300";
+      const cool = true;
+
+      // Wes opinions
+      // const should be used by default (if you don't want to change the value)
+      // if a variables value needs to be changed use let
+
+      // naming conventions
+      // variables should not start with a capital
+      // variables MUST start with a letter or they can start with an _ or $
+      // _is associated with a library called loadash
+      // $ is associated with a library called jquery
+      // don't start with $ or _
+      // use camel case for every word except for the first one
+      const iLovePizza = true;
+      // UpperCamelCase for defining classes
+      const ILoveToEatHotDogs = false;
+      // snake case!!
+      const this_is_snake_case = "cool";
+      // DON'T USE KEBAB CASE!!!!
+      // const this-is-kebab-case = false;
+    </script>
+  </body>
 </html>

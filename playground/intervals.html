@@ -1,15 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Intervals and Timers</title>
+    <link rel="stylesheet" href="../base.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Intervals and Timers</title>
-  <link rel="stylesheet" href="../base.css">
-</head>
+  <body>
+    <script>
+      // Set Timeout takes a callback and the number of milliseconds to run it after
+      // Javascript will set of the timer but it will keep running the rest of the code.
+      // This illustrates the asynchronous nature of javascript
+      // The function below is called a callback function
+      function buzzer() {
+        console.log("ENNNNNGGGGGG!");
+      }
 
-<body>
+      // console.log("Starting");
+      // setTimeout(buzzer, 500);
+      // console.log("Finishing");
 
-</body>
+      // Intervals
+      // There's no way to set the interval to run right away and then check every two seconds for instance
 
+      // setInterval(buzzer, 2000);
+
+      // We have to code our own interval
+      function setImmediateInterval(funcToRun, ms) {
+        // right away call that function
+        funcToRun();
+        // Run a regular interval
+        return setInterval(funcToRun, ms);
+      }
+
+      setImmediateInterval(buzzer, 2000);
+
+      // If you want to clear a timer or interval you have to save the reference to it
+
+      function destroy() {
+        document.body.innerHTML = `<p>DESTROYED</p>`;
+      }
+
+      const bombTimer = setTimeout(destroy, 2000);
+
+      window.addEventListener("click", () => {
+        console.log("You clicked! You saved the world");
+        // ??? How do I stop the timer from running???!!!!!
+        clearTimeout(bombTimer); // STOP TIMER FROM RUNNING
+      });
+
+      const poopInterval = setInterval(() => {
+        console.log("💩");
+        console.log("Hehehehe");
+      }, 1000);
+
+      // clearInterval(poopInterval)
+
+      setTimeout(() => {
+        clearInterval(poopInterval);
+      }, 5000);
+    </script>
+  </body>
 </html>

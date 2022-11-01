@@ -1,16 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../base.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title></title>
-  <link rel="stylesheet" href="../base.css">
-</head>
+  <style>
+    :root {
+      --x-position: 0;
+      --y-position: 0;
+      --rotateY: 0;
+      --rotate: 0;
+    }
 
+    .Turt {
+      position: relative;
+      transform: rotateY(var(--rotateY)) rotate(var(--rotate))
+        translateX(var(--x-position)) translateY(var(--y-position));
+      transition: transform 2s;
+    }
+  </style>
 
-<body>
+  <body>
+    <img src="./turtle.png" alt="Turt" class="Turt" />
 
-</body>
+    <script>
+      const turtle = document.querySelector(".Turt");
+      // Gets root variables
+      const rootStyle = document.documentElement.style;
+      const xPos = getComputedStyle(document.documentElement).getPropertyValue(
+        "--x-position"
+      );
+      console.log(xPos);
+      const yPos = getComputedStyle(document.documentElement).getPropertyValue(
+        "--y-position"
+      );
+      console.log(yPos);
 
+      let x = 0;
+      let y = 0;
+      const speed = 20;
+      let flippedX = 0;
+      let flippedY = 0;
+      function handleKeyDown(e) {
+        // if it's not an arrow key, we don't care
+        if (!e.key.includes("Arrow")) {
+          return;
+        }
+        switch (e.key) {
+          case "ArrowUp":
+            flippedY = 270;
+            --y;
+            break;
+          case "ArrowDown":
+            ++y;
+            break;
+          case "ArrowLeft":
+            --x;
+            flippedX = 180;
+            break;
+          case "ArrowRight":
+            ++x;
+            flippedX = 0;
+            break;
+          default:
+            console.log("That is not a valid move");
+            break;
+        }
+        rootStyle.setProperty("--x-position", `${x * speed}px`);
+        rootStyle.setProperty("--y-position", `${y * speed}px`);
+      }
+      window.addEventListener("keydown", handleKeyDown);
+    </script>
+  </body>
 </html>

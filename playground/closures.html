@@ -1,15 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../base.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title></title>
-  <link rel="stylesheet" href="../base.css">
-</head>
+  <body>
+    <script>
+      // Closures
+      // Closure is the ability to access a parent level scope from a child level scope event after the parent function has been terminated
+      // function outer() {
+      //   const outerVar = "Hey I am the outer Var!";
+      //   function inner() {
+      //     const innerVar = "Hey I am the inner var!";
+      //     console.log(innerVar);
+      //     console.log(outerVar);
+      //   }
+      //   return inner;
+      // }
+      // const innerFn = outer();
+      // innerFn();
 
-<body>
+      // -------------------------------------------------------------------------
+      // Closure creating a function
+      // When you create this outer function, because our inner scope is referencing a variable in an outer scope that is called closure
+      // After we've run a function we can still access the outer functions variables even though the function has been closed/run
 
-</body>
+      function createGreeting(greeting = "") {
+        const myGreet = greeting.toUpperCase();
+        return function (name) {
+          return `${myGreet} ${name}`;
+        };
+      }
 
+      const sayHello = createGreeting("hello");
+      const sayHey = createGreeting("hey");
+      console.log(sayHello("wes"));
+      console.log(sayHello("grim"));
+      console.log(sayHey("kait"));
+
+      // -------------------------------------------------------------------------
+      // Private Variables
+      // You can maintain multiple games or functions at once
+      // each game has their own private variables that can't be accessed by each other.
+
+      function createGame(gameName) {
+        let score = 0;
+        return function win() {
+          score++;
+          return `Your name ${gameName} score is ${score}`;
+        };
+      }
+
+      const hockeyGame = createGame("hockey");
+      const footballGame = createGame("football");
+
+      // Closures are the ability for a child function to access variables from a higher level scope even after the functions have been called or closed.
+    </script>
+  </body>
 </html>

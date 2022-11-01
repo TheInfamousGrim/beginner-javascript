@@ -1,17 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title> </title>
+    <link rel="stylesheet" href="../base.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>
+  <body>
+    <script>
+      // An array literal
+      const names = ["wes", "kait", "snickers"];
+      // There are no keys in an array there are only indexes
+      // An array is just an object at the end of the day
+      // If you ever want to check if something is an array you use the Array.isArray(someArray) static method
+      console.log(Array.isArray(names));
 
-  </title>
-  <link rel="stylesheet" href="../base.css">
-</head>
+      // If you want to access things from the array
+      console.log(names[0]);
 
-<body>
+      // If you want to find the length
+      console.log(names.length);
 
-</body>
+      // If you want the last item in the array
+      console.log(names[names.length - 1]);
 
+      // Difference between mutable and immutable
+      // Mutable methods mutate the original array
+      // Immutable methods do not mutate the original array and return a new array
+
+      // Mutation Method - THEY DO CHANGE THE ORIGINAL DATA
+      const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      // // const numbersBackwards = numbers.reverse();
+      // // console.log(numbersBackwards);
+      // console.log(numbers);
+
+      // // Immutable Methods - THEY DO NOT CHANGE THE ORIGINAL DATA
+      // const pizzaSlice = numbers.slice(2, 4);
+      // console.log(pizzaSlice);
+      // console.log(numbers);
+
+      // // If you want to reverse the order of the array without mutating the original
+      // const numbersReversed = [...numbers];
+      // numbersReversed.reverse();
+      // console.log(numbersReversed);
+      // console.log(numbers);
+
+      // push method does mutate the original array and add an item to the end of the array
+      // names.push("lux");
+      // console.log(names);
+      // Use the spread operator!
+      const names2 = [...names, "lux"];
+      console.log(names);
+      console.log(names2);
+
+      // unshift method does mutate the original array and add an item to the end of the array
+      // names.unshift("poppy");
+      // console.log(names);
+      // Use the spread operator!
+      const names3 = ["poppy", ...names];
+      console.log(names);
+      console.log(names3);
+
+      // Two methods that will forever be goofed up hahaha
+      // Slice and Splice
+      // Slice is immutable
+      // Slice will take a copy and has a start index argument and ending index argument where the ending index isn't copied it is the index where the slicing ends
+      // YOU PROBABLY ALWAYS WANT TO USE SLICE!!!!!!!!!!!!!!!
+
+      // Splice is mutable
+      // Splice will remove indexes from an array and takes the starting index as the first argument and the second argument is how many indexes from the starting index do you wish to take out of the array
+      // console.log(numbers);
+      // numbers.splice(3, 2);
+      // console.log(numbers);
+
+      // Adding items in the middle of the array
+      const bikes = ["bianchi", "miele", "panasonic", "miyata"];
+      const newBikes = [...bikes.slice(0, 2), "benotto", ...bikes.slice(2)];
+      console.log(newBikes);
+
+      // Removing items from an array
+      const newBikes2 = [...newBikes.slice(0, 3), ...newBikes.slice(4)];
+      console.log(newBikes2);
+
+      // Use the findIndex method to find the index that we want to delete in the array
+      const comments = [
+        {
+          text: "Cool Beans",
+          id: 123,
+        },
+        {
+          text: "Cool Beans",
+          id: 133,
+        },
+        {
+          text: "Cool Beans",
+          id: 233,
+        },
+        {
+          text: "Cool Beans",
+          id: 333,
+        },
+        {
+          text: "Cool Beans",
+          id: 433,
+        },
+      ];
+      console.log(comments);
+
+      function deleteComment(id, comments) {
+        // first find the index of the item in the array
+        const commentIndex = comments.findIndex((comment) => comment.id === id);
+        // make a new array without that item in it
+        return [
+          ...comments.slice(0, commentIndex),
+          ...comments.slice(commentIndex + 1),
+        ];
+        // return our new array
+      }
+
+      // const kaitIndex = names.findIndex((name) => name === "kait");
+      // const newNamesWithoutKait = [
+      //   ...names.slice(0, kaitIndex),
+      //   ...names.slice(kaitIndex + 1),
+      // ];
+      // console.log(newNamesWithoutKait);
+      // console.log(kaitIndex);
+    </script>
+  </body>
 </html>

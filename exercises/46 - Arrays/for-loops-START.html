@@ -1,27 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>For Loops</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>For Loops</title>
-</head>
+  <body>
+    <script>
+      const numbers = [2, 34, 3, 23, 42, 3, 1, 65, 364, 5, 645, 6];
 
-<body>
-  <script>
-    const numbers = [2, 34, 3, 23, 42, 3, 1, 65, 364, 5, 645, 6];
+      const name = "Wes Bos 👾 💒 🤮";
 
-    const name = 'Wes Bos';
+      const wes = {
+        name: "wes",
+        age: 100,
+        cool: true,
+      };
 
-    // For
+      // For
+      for (let i = 0; i <= 10; i++) {
+        console.log(i);
+      }
 
-    // For of
+      console.clear();
+      for (let i = 0; i < numbers.length; i++) {
+        console.log(numbers[i]);
+      }
 
-    // For in
+      // For loops could be really useful for looping over RGBA values and incrementing by four each time
 
-    // While Loop
-  </script>
-</body>
+      // For of
+      // Used for looping over iterables
+      // Iterables are numbers or lengths
 
+      for (const letter of name) {
+        console.log(letter);
+      }
+
+      // Useful for looping over emojis
+      // You could also use the spread operator
+
+      console.table([...name]);
+
+      // Useful for sequencing promises
+      // If you ever need to sequence your data
+
+      // For in
+      // For looping over the keys in an object
+      // The for in looping looks ahead to prototypes
+
+      for (const prop in wes) {
+        console.log(prop);
+      }
+
+      // While Loop
+      // While will take a condition and run the condition till false
+      let cool = true;
+      let i = 0;
+      while (cool === true) {
+        console.log("You are cool");
+        i++;
+        if (i >= 100) {
+          cool = false;
+        }
+      }
+    </script>
+  </body>
 </html>

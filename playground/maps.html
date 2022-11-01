@@ -1,17 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Maps</title>
+    <link rel="stylesheet" href="../base.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Maps</title>
-  <link rel="stylesheet" href="../base.css">
-</head>
+  <body>
+    <ul class="prizes"></ul>
+    <script>
+      const person1 = {
+        name: "wes",
+        age: 200,
+      };
 
-<body>
-  <script>
+      const myMap = new Map();
+      // .set()
 
-  </script>
-</body>
+      myMap.set("name", "wes");
+      myMap.set(100, "This is a number");
+      myMap.set(person1, "Really Cool");
+      console.log(myMap);
+      // Can't use dot notation to add entries to maps like you would an object
+      // A map allows us to put any value into the key and the value
+      // In javascript we sometimes use dictionaries that will store metadata
+      // Useful for looking up objects
+      console.log(myMap.get(person1));
 
+      // If somebody has some scores where we want to store additional information about what prizes they win at a specific score
+      const score = 100;
+      const prizes = new Map();
+      prizes.set(100, "Bear");
+      prizes.set(200, "Duck");
+      prizes.set(300, "Cat");
+      console.log(`You win a ${prizes.get(score)}`);
+
+      // with a map order is guaranteed
+      // select the ul
+      const ul = document.querySelector(".prizes");
+      // for each will get the entry only,
+      prizes.forEach((entry) => {
+        console.log(entry);
+      });
+
+      // for of method
+      // This will give us arrays that will in each first index give the key and in each second index give us the value
+      for (const prize of prizes) {
+        console.log(prize[0], prize[1]);
+      }
+      // You can also go further and destructure the array
+      for (const [points, prize] of prizes) {
+        console.log(points, prize);
+        const li = `<li>${points} - ${prize}</li>`;
+        ul.insertAdjacentHTML("beforeend", li);
+      }
+
+      // When should you use a map over an object?
+      // If you need to maintain the order of your items
+      // There is no map literal
+      // You can also pass in new items using an array of arrays
+      // You can't use methods on maps they're for storing data
+
+      const myMap2 = new Map([
+        ["name", "wes"],
+        ["age", 49],
+      ]);
+      console.log(myMap2);
+
+      // Anytime you want to transfer an object or array to another client/server is using JSON
+      const jsonString = JSON.stringify(person1);
+      console.log(jsonString);
+      // Turn the JSON string back into an object
+      const jsonToObject = JSON.parse(jsonString);
+      console.log(jsonToObject);
+      // Currently JSON doesn't handle maps
+      // You currently have to convert a map to an object
+
+      // .has()
+
+      // .delete()
+    </script>
+  </body>
 </html>

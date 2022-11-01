@@ -1,17 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../base.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title></title>
-  <link rel="stylesheet" href="../base.css">
-</head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script>
+      // Objects don't store the keys and values in order so never rely on the order of the object that you wrote
 
-<body>
-  <script>
+      // Object literal syntax
+      const age = 100;
+      const person = {
+        age,
+        name: "wes",
+        propertyToCheck: "NEVER!!!!!",
+        "cool-dude": true,
+        "really cool": false,
+        7777: true,
+        dog: "snickers",
+        clothing: {
+          shirts: 10,
+          pants: 2,
+        },
+        // Method short hand
+        sayHello(greeting = "hey") {
+          return `${greeting} ${this.name}`;
+        },
+      };
 
-  </script>
-</body>
+      console.log(person);
+      // You can go further with the object keys you can have them with dashes as shown above
+      // Always put a comma dangle on the object
+      // You can add nested objects
 
+      // You can add keys and values by using the dot notation
+      person.job = "Web Developer";
+      console.log(person);
+
+      // You can freeze the properties of the object by taking a screenshot of the object you wish to freeze and storing that in a new variable
+      // You've created something immutable
+      const personFreeze = Object.freeze(person);
+
+      // To access properties you'll generally be using . notation
+      console.log(person.age);
+      // However you can use [] to access properties
+      // We have that so we can programmatically access content
+
+      // const propertyToCheck = prompt("What do you want to check?");
+      // console.log(person[propertyToCheck]);
+
+      // also if you have improper keys/properties you can use ['property/key'] to look up keys like 'cool-dude' or 'really cool'
+
+      // reference keys that are nested
+      console.clear();
+      console.log(person.clothing.shirts);
+      // The Gotcha
+      // If you search for a property that doesn't exist and then search inside of that property then an error will occur!!!!
+      // if you don't know if a property exists then you can use this
+      console.log(person.james ? person.james.cool : undefined);
+
+      // However you can also use the optional operator now
+      console.log(person?.james?.cool);
+
+      // Methods are just functions that live inside objects
+      console.log(person.sayHello());
+
+      // What is this ?
+      // You can't use this for arrow functions in objects
+      // Arrow functions don't scope this to the object
+
+      // Referencing vs Values
+      console.clear();
+
+      const person1 = {
+        first: "wes",
+        last: "bos",
+        clothing: {
+          shirts: 10,
+          pants: 2,
+        },
+      };
+
+      const person2 = {
+        first: "wes",
+        last: "bos",
+      };
+
+      // Why is this false?
+      console.log(person1 === person2);
+
+      // Objects and arrays can have multiple property values and items inside of them so separate objects and arrays will never be equivalent
+
+      // When objects and arrays are copied by reference then the first array or object will be permanently linked, which can lead to numerous bugs
+      // const person3 = person1;
+      // person3.first = "Larry";
+      // console.log(person3.first);
+      // console.log(person1.first);
+
+      // We need to use the spread operator to create a new object or array when we're using a previous object or array in order to create it.
+      // first method references, whereas the correct method references!
+      // const person3 = { ...person1 };
+      // person3.first = "Larry";
+      // console.log(person3.first);
+      // console.log(person1.first);
+
+      // THIS METHOD ONLY GOES ONE LEVEL DEEP!!!!!!!!
+      // Leading to the same problem as before when we referenced the object
+      // Both methods only do shallow copies
+      // You need to do a deep copy
+      // Use Lodash
+      // JSdeliver is really pog!!!!!!
+      const person3 = _.cloneDeep(person1);
+      person3.clothing.shirts = 100;
+      console.log(person3);
+      console.log(person1);
+
+      // Merge objects together
+
+      const meatInvetory = {
+        bacon: 2,
+        sausage: 3,
+      };
+
+      const veggiInventory = {
+        lettuce: 5,
+        tomatoes: 7,
+      };
+
+      // If there are duplicates the property that you add after will become the new property in the new object
+      const inventory = { ...meatInvetory, ...veggiInventory, oysters: 10 };
+      console.log(inventory);
+
+      // Passing in via reference also applies to functions!!!!!!
+      function doStuff(data) {
+        data = "something else";
+        console.log(data);
+      }
+      const name1 = "wes";
+      doStuff(name1);
+
+      // If you pass in an array or object then you might be modifying the original object or array
+      // Pass it in as a copy
+      function doStuff2(data) {
+        data.tomatoes = 10000000000000;
+        console.log(data);
+      }
+
+      doStuff2(inventory);
+    </script>
+  </body>
 </html>

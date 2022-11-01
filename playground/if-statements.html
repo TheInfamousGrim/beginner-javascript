@@ -1,19 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>If Statements</title>
+    <link rel="stylesheet" href="../base.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>If Statements</title>
-  <link rel="stylesheet" href="../base.css">
-</head>
+  <body>
+    <script>
+      const age = 50;
 
-<body>
-  <script>
-    if (10 > 2) {
-      console.log('Yep');
-    }
-  </script>
-</body>
+      if (age > 70) {
+        console.log("Yep 1");
+      } else if (age > 60) {
+        console.log("In your sixties");
+      } else if (age > 50) {
+        console.log("in your fifties");
+      } else {
+        console.log("Nothing was true");
+      }
 
+      function slugify(sentence, lowercase) {
+        if (lowercase) {
+          return sentence.replace(/\s/g, "-").toLowerCase();
+        }
+        // else
+        return sentence.replace(/\s/g, "-");
+      }
+
+      function slugify2(sentence, lowercase) {
+        let slug = sentence.replace(/\s/g, "-");
+        if (lowercase) {
+          return (slug = slug.toLowerCase());
+        }
+        return slug;
+      }
+
+      // Ternary expressions
+      function slugify3(sentence, lowercase) {
+        let slug = sentence.replace(/\s/g, "-");
+        return lowercase ? (slug = slug.toLowerCase()) : slug;
+      }
+
+      // Switch statements
+      function slugify4(sentence, lowercase) {
+        let slug = sentence.replace(/\s/g, "-");
+        switch (lowercase) {
+          case lowercase === true:
+            return (slug = slug.toLowerCase());
+          default:
+            return slug;
+        }
+      }
+
+      const name1 = "Grim";
+      const last = "Funk";
+
+      if (name1 === "Scott" || (name1 === "Grim" && last === "Funk")) {
+        console.log("Cool Name!");
+      }
+
+      const isAwesomeName = "Funkalicious".includes(last);
+
+      if (isAwesomeName) {
+        console.log("SUPER COOL AWESOME NAME");
+      }
+
+      function nameIsAwesome(name) {
+        return "awesome".includes(name);
+      }
+
+      if (nameIsAwesome("wes")) {
+        console.log("COOL NAME WES");
+      }
+
+      // Truthy or falsy
+      // If statements will take in a number of different values and will try to coerce them into booleans
+      // All values are truthy except for false, 0, -0, 0n, '', null, undefined, & NaN
+      const dog = "";
+
+      if (dog) {
+        console.log("you have a dog");
+      } else {
+        console.log(`You don't have a dog`);
+      }
+
+      // ---------------- Coercion ---------------------//
+      console.clear();
+
+      const isCool = true;
+
+      if (!isCool) {
+        console.log("You are not cool");
+      }
+
+      // If you use a double bang you can coerce a truthy or falsy value into a real boolean
+      // If you use a single bang then you don't need to use coercion
+      // If you understand truthy and falsy you don't necessarily have to use coercion
+      console.log(!!name1);
+
+      const middle = "";
+      console.log(!!middle);
+
+      // Ternary operator
+      // Short hand if statements
+      // USE THEM FOR ONE LINERS, SUPER HARD TO READ IF MULTIPLE CONDITIONALS ARE NEEDED
+      const count = 1;
+      const word = count === 1 ? "item" : "items";
+
+      const sentence = `You have ${count} ${word} in your cart`;
+      console.log(sentence);
+
+      function showAdminBar() {
+        console.log("showing admin bar");
+      }
+      const isAdmin = true;
+      isAdmin ? showAdminBar() : null;
+
+      // AND AND TRICK!
+      function check1() {
+        console.log("Running check 1");
+        return true;
+      }
+      function check2() {
+        console.log("Running check 2");
+        return false;
+      }
+      function check3() {
+        console.log("Running check 3");
+        return true;
+      }
+
+      // This is short circuiting
+      if (check1() && check2() && check3()) {
+        console.log("all checks passed");
+      } else {
+        console.log("some checks failed");
+      }
+
+      // This can used/abused
+      // Javascript will say this is a little condition
+      // we then check if this is true
+      // if it's true it will run
+      // if it's false it won't run
+      isAdmin && showAdminBar();
+
+      // Block list if statements
+      // You can use this to make a one liner
+      console.clear();
+      if (isAdmin) {
+        showAdminBar();
+      }
+    </script>
+  </body>
 </html>
