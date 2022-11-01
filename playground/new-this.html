@@ -9,7 +9,51 @@
 </head>
 
 <body>
+  <button class="one">Button 1</button>
+  <button class="two">Button 2</button>
+  <script>
+    // The new keyword //
 
+    // const myDate = new Date('August 11, 2025');
+    // console.dir(myDate);
+    // console.dir(myDate.getFullYear());
+
+    // const names = ['wes', 'kait'];
+
+    // const span = document.createElement('span');
+
+    // console.log(span);
+
+    function Pizza(toppings = [], customer) {
+      console.log('Making a pizza');
+      // Save the toppings that were passed in, to this instance of pizza
+      this.toppings = toppings;
+      this.customer = customer;
+      this.id = Math.floor(Math.random() * 16777215).toString(16);
+    }
+
+    const pepperoniPizza = new Pizza(['pepperoni'], 'GrimFunk');
+    const canadianPizza = new Pizza(['pepperoni', 'mushrooms', 'olives'], 'BigBoi');
+    console.log(pepperoniPizza);
+    console.log(canadianPizza);
+    console.log(pepperoniPizza.constructor);
+    console.log(pepperoniPizza instanceof Pizza);
+
+    // The this keyword //
+
+    // const button1 = document.querySelector('.one');
+    // const button2 = document.querySelector('.two');
+
+    // function tellMeAboutTheButton() {
+    //   console.log(this);
+    //   setTimeout(() => {
+    //     this.textContent = 'You clicked me';
+    //   }, 1000);
+    // }
+
+    // button1.addEventListener('click', tellMeAboutTheButton);
+    // button2.addEventListener('click', tellMeAboutTheButton);
+  </script>
 </body>
 
 </html>
