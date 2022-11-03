@@ -50,7 +50,7 @@ const person2 = { name: 'wes' };
 console.log(isEqual(person1, person2));
 
 function checkIfNameIsCool(firstName) {
-  return new Promise(function(resolve, reject) {
+  return new Promise((resolve, reject) => {
     if (firstName === 'Wes') {
       resolve('Cool name');
       return;

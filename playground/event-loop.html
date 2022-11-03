@@ -9,8 +9,72 @@
 </head>
 
 <body>
-  <script>
+  <style>
+    .go {
+      margin: 5rem;
+      background-color: whitesmoke;
+      padding: 5rem;
+      width: 25rem;
+      transition: all 0.25s;
+    }
 
+    .circle {
+      border-radius: 50%;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .purple {
+      background-color: purple;
+      color: whitesmoke;
+    }
+
+    .transparent {
+      opacity: 0;
+    }
+  </style>
+  <div class="go">
+    Click Me
+  </div>
+  <script>
+    // console.log('Starting');
+    // setTimeout(() => {
+    //   console.log('Running');
+    // }, 2000);
+    // console.log('Ending');
+
+    const go = document.querySelector('.go');
+
+    // 1. Make a div and change the text to GO when clicked
+    go.addEventListener('click', (e) => {
+      const el = e.currentTarget;
+      console.log(el);
+      el.textContent = 'GO';
+      // 2. Make it a circle after 2 seconds
+      setTimeout(() => {
+        el.classList.add('circle');
+        // 3. Make it red after 0.5s
+        setTimeout(() => {
+          el.classList.add('red');
+          // 4. Make it square after 0.25s
+          setTimeout(() => {
+            el.classList.remove('circle');
+            // 5. Make it purple after 0.3s
+            setTimeout(() => {
+              el.classList.remove('red');
+              el.classList.add('purple');
+              // 6. Fade out after 0.3s
+              setTimeout(() => {
+                el.classList.add('transparent');
+              }, 300);
+            }, 300);
+          }, 250);
+        }, 250);
+      }, 2000);
+    });
+    // 7. Finish!
   </script>
 </body>
 

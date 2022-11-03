@@ -9,8 +9,32 @@
 </head>
 
 <body>
-  <script>
+  <p class="user"></p>
 
+  <script>
+    const baseEndpoint = `https://api.github.com`;
+    const usersEndpoint = `${baseEndpoint}/users`;
+    const userEl = document.querySelector('.user');
+
+    function handleError(err) {
+      console.log('OH NO!');
+      console.log(err);
+      userEl.textContent = `Something went wrong: ${err}`;
+    }
+
+    async function displayUser(username) {
+      userEl.textContent = 'loading...';
+      // Fetch library
+      const response = await fetch(`${usersEndpoint}/${username}`);
+      const data = await response.json();
+      console.log(data);
+      console.log(data.bio);
+      console.log(data.name);
+      console.log(data.location);
+      userEl.textContent = `${data.name} - ${data.bio}`;
+    }
+
+    displayUser('TheInfamousGrim').catch(handleError);
   </script>
 </body>
 

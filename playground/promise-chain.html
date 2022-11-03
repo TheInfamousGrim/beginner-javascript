@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Event Loop</title>
+    <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+    <style>
+        .go {
+            margin: 5rem;
+            background-color: whitesmoke;
+            padding: 5rem;
+            width: 25rem;
+            transition: all 0.25s;
+        }
+
+        .circle {
+            border-radius: 50%;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .purple {
+            background-color: purple;
+            color: whitesmoke;
+        }
+
+        .transparent {
+            opacity: 0;
+        }
+    </style>
+    <div class="go">
+        Click Me
+    </div>
+    <script>
+        const wait = (ms = 0) =>
+            new Promise((resolve) => {
+                setTimeout(resolve, ms);
+            });
+
+        wait(200).then(() => {
+            console.log('Done!');
+        });
+
+        const go = document.querySelector('.go');
+
+        // Using .then
+        function animate(e) {
+            const el = e.currentTarget;
+            // 1. Make a div and change the text to GO when clicked
+            el.textContent = 'GO';
+            // 2. Make it a circle after 2 seconds
+            wait(2000)
+                .then(() => {
+                    el.classList.add('circle');
+                    return wait(500);
+                })
+                .then(() => {
+                    // 3. Make it red after 0.5s
+                    el.classList.add('red');
+                    return wait(250);
+                })
+                .then(() => {
+                    // 4. Make it square after 0.25s
+                    el.classList.remove('circle');
+                    return wait(300);
+                })
+                .then(() => {
+                    // 5. Make it purple after 0.3s
+                    el.classList.remove('red');
+                    el.classList.add('purple');
+                    return wait(300);
+                })
+                .then(() => {
+                    // 6. Fade out after 0.3s
+                    el.classList.add('transparent');
+                });
+        }
+        // 7. Finish!
+
+        // Using asynchronous function
+        async function animate2(e) {
+            const el = e.currentTarget;
+            // 1. Make a div and change the text to GO when clicked
+            el.textContent = 'GO';
+            // 2. Make it a circle after 2 seconds
+            await wait(2000);
+            el.classList.add('circle');
+            // 3. Make it red after 0.5s
+            await wait(500);
+            el.classList.add('red');
+            // 4. Make it square after 0.25s
+            await wait(250);
+            el.classList.remove('circle');
+            // 5. Make it purple after 0.3s
+            await wait(300);
+            el.classList.remove('red');
+            el.classList.add('purple');
+            // 6. Fade out after 0.3s
+            await wait(300);
+            el.classList.add('transparent');
+            // 7. Finish!
+        }
+
+        go.addEventListener('click', animate2);
+    </script>
+</body>
+
+</html>

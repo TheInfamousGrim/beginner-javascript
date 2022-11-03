@@ -10,7 +10,109 @@
 
 <body>
   <script>
+    function makePizza(toppings = []) {
+      return new Promise((resolve, reject) => {
+        // reject if people try with pineapple
+        if (toppings.includes('pineapple')) {
+          reject('Seriously? Get out 🍍');
+        }
+        const amountOfTimeToBake = 500 + toppings.length * 200;
+        // Wait 1 second for the pizza to cook
+        setTimeout(() => {
+          // When you are ready you can resolve this promise
+          resolve(`Here is your pizza 🍕 with the toppings ${toppings.join(' ')}`);
+        }, amountOfTimeToBake);
+        // If something goes wrong, you can reject this promise
+      });
+    }
 
+    // Run them sequentially
+    // makePizza(['pepperoni'])
+    //   .then((pizza) => {
+    //     console.log(pizza);
+    //     return makePizza(['ham', 'cheese']);
+    //   })
+    //   .then((pizza) => {
+    //     console.log(pizza);
+    //     return makePizza(['olives', 'chicken', 'peppers']);
+    //   })
+    //   .then((pizza) => {
+    //     console.log(pizza);
+    //     return makePizza();
+    //   })
+    //   .then((pizza) => {
+    //     console.log(pizza);
+    //     return makePizza([
+    //       'feta',
+    //       'garlic',
+    //       'salami',
+    //       'pastrami',
+    //       'pesto',
+    //       'artichoke',
+    //     ]);
+    //   })
+    //   .then((pizza) => {
+    //     console.log('All done! Here is your last pizza');
+    //     console.log(pizza);
+    //   });
+
+    // Run them concurrently
+    // const pizzaPromise1 = makePizza(['olives', 'chicken', 'peppers']);
+    // const pizzaPromise2 = makePizza([
+    //   'feta',
+    //   'garlic',
+    //   'salami',
+    //   'pastrami',
+    //   'pesto',
+    //   'artichoke',
+    // ]);
+    // const pizzaPromise3 = makePizza(['ham', 'cheese']);
+
+    // // You can make a mega promise if you want them to run concurrently
+    // const dinnerPromise = Promise.all([
+    //   pizzaPromise1,
+    //   pizzaPromise2,
+    //   pizzaPromise3,
+    // ]);
+
+    // // Then you can await for all the promises to be fulfilled and then return them
+    // dinnerPromise.then((pizzas) => {
+    //   const [hottie, garbagePail, hamAndCheese] = pizzas;
+    //   console.log(hottie, garbagePail, hamAndCheese);
+    // });
+
+    // const firstPizzaPromise = Promise.race([
+    //   pizzaPromise1,
+    //   pizzaPromise2,
+    //   pizzaPromise3,
+    // ]);
+
+    // firstPizzaPromise.then((pizza) => {
+    //   console.log('You must be hungry, here is the first one ready.');
+    //   console.log(pizza);
+    // });
+
+    // Promises - Error Handling
+
+    function handleError(err) {
+      console.log('Ohh nooo!!!');
+      console.log(err);
+    }
+
+    makePizza(['cheese', 'pineapple'])
+      .then((pizza) => {
+        console.log(pizza);
+      })
+      .catch(handleError);
+
+    const p1 = makePizza(['pep']);
+    const p2 = makePizza(['pineapple']);
+
+    const dinnerPromise2 = Promise.allSettled([p1, p2]);
+
+    dinnerPromise2.then((results) => {
+      console.log(results);
+    });
   </script>
 </body>
 
